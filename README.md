@@ -14,7 +14,7 @@
 | Annotation Type      | Bounding Box : 6종                                          |
 | Class                | 1. RASPBERRY PICO, 2. HOLE, 3. BOOTSEL, 4. OSCILLATOR, 5. USB, 6. CHIPSET |
 | Property             | 없음                                                        |
-| Misc                 | 칩이 사진에 짤리거나 컨테이너 바깥쪽에 걸쳐서 구성용품이 짤릴 경우 구성용품의 50프로 이상이 보일 경우, 바운딩 박스를 한다. 주변이 너무 하얗거나 너무 어두워서 edge가 흐려질 경우, bounding box하지 않는다. 또한 bounding box를 할 때 최대한 여백을 주지 않는다.|
+| Misc                 | 칩이 사진에 짤리거나 컨테이너 바깥쪽에 걸쳐서 구성용품이 짤릴 경우 구성용품의 50프로 이상이 보일 경우, 바운딩 박스를 한다. 주변이 너무 하얗거나 너무 어두워서 edge가 흐려질 경우, bounding box하지 않는다. 또한 bounding box를 할 때 최대한 여백을 주지 않는다.USB는 RASPBERRY PICO에 포함한다.|
 |Contact Info|이선우,김영수,한건희,최범석|
 
 - 특이사항 : 부품 고장을 라벨링 안하는 이유는 데이터셋에 고장이 났다는 표시나 이미지를 확인할 수 없어서 이를 배제하였다.
