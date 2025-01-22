@@ -1,3 +1,4 @@
+
 ## 첫번째 프로젝트
   - 칩의 구성용품 라벨링 프로젝트
 
@@ -8,7 +9,7 @@
 | Expected Labeling Unit per Data | 1개                                              |
 | Brief Description    | 주어진 이미지에서 객체를 bounding box 하는것 - 칩의 구성요소를 파악하는 bounding box 진행하기 |
 | 종료 희망 날짜        | - 배치 1 : ~2025-1-22까지, - 배치 2 : ~ 2025-1-22까지       |
-| Customer Guideline   | ![Image](https://github.com/user-attachments/assets/9b254399-0e8b-4bc8-b9e9-ea634e3c0abd)                                                        |
+| Customer Guideline   | ![Screenshot from 2025-01-22 14-28-14](https://github.com/user-attachments/assets/1e5a0b7c-62d5-4dc1-bd51-251a0c3bae7d) 빨간색 : RASPBERRY PICO , 주황색 : HOLE, 노란색 : BOOTSEL, 연두색 : OSCILLATOR, 파란색 : USB, 보라색 : CHIPSET|
 | Data Collection      | 강사님 제공 데이터                                           |
 | Annotation Type      | Bounding Box : 6종                                          |
 | Class                | 1. RASPBERRY PICO, 2. HOLE, 3. BOOTSEL, 4. OSCILLATOR, 5. USB, 6. CHIPSET |
