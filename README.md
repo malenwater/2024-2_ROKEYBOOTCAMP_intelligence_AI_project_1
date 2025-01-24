@@ -35,13 +35,13 @@
 | 주제                 | 내용                                                         |
 |-----------------------|-------------------------------------------------------------|
 | Data Type            | Image(jpg)                                                  |
-| Data Amount          | 1000장(양품 500장, 불량품 500장), 배치 1 : 240장, 배치 2 : 760장                        |
+| Data Amount          | 1200장(양품 600장, 불량품 600장), 배치 1 : 240장, 배치 2 : 960장                        |
 | Expected Labeling Unit per Data | 0 ~ 4개                                               |
 | Brief Description    | Image Category(분류) / Bounding Box(바운딩 박스)을 통한 양품, 불량품 판별 |
 | 종료 희망 날짜        | - 배치 1 : ~2025-1-24까지, - 배치 2 : ~ 2025-1-25까지       |
 | Customer Guideline   | 더미 |
 | Data Collection      | 자체 제작                                         |
-| Annotation Type      | Image Category : 2종, Bounding Box : 3종                                          |
+| Annotation Type      | Image Category : 2종, Bounding Box : 4종                                          |
 | Class                | Image Category : 1. Good product 2. Faulty product,  Bounding Box : 1. USB 2. BOOTSEL, 3. CHIPSET , 4. OSCILLATOR|
 | Property             | 없음                                                        |
 | Misc                 | 샘플이 컨테이너에 바깥에 걸쳐져 있어도, 데이터로 사용한다. 칩이 사진에 짤리거나 컨테이너 바깥쪽에 걸쳤을 때, 불량품이 짤릴 경우, 불량품의 50프로 이상이면 바운딩 박스를 한다. 주변의 채광을 가림막을 이용하여 밝기를 일정하게 조절한다. 바운딩 박스의 경우, 예시 사진을 몇 개 넣어 불량품의 3~7 픽셀의 패딩을 넣어서 바운딩 박스를 설정한다.|
