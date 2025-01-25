@@ -40,11 +40,12 @@
      - 2) 전체 객체를 바운딩 박스, 구성용품을 바운딩 박스하고, 특성을 부여하는 식으로 라벨링을 한다.
   - 불량품
   - OS 
+  - OS ,USB , BOOTSEL , CHIPSET : 14
   - USB 
-  - BOOTSEL 
   - USB , BOOTSEL 
-  - OS ,USB , BOOTSEL , CHIPSET
+  - BOOTSEL 
   - BOOTSEL 없음
+    USB 60 - 60, CHIPSET 106 - 14 , OS 85 - 35, BOOTSEL 41 - 79
 3. 모델은 어떤 것이 효율적인가?
 
   - 
