@@ -45,6 +45,7 @@
   - USB , BOOTSEL 
   - BOOTSEL 
   - BOOTSEL 없음
+  - 
     USB 60 - 60, CHIPSET 106 - 14 , OS 85 - 35, BOOTSEL 41 - 79
 3. 모델은 어떤 것이 효율적인가?
 
