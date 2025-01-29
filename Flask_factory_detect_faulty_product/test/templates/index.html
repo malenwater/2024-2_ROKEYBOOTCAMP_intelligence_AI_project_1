@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이미지 업로드</title>
+    <title>실시간 이미지 업로드</title>
+    <script>
+        function updateImage() {
+            let img = document.getElementById("uploadedImage");
+            img.src = "/receive_image?" + new Date().getTime(); // 캐시 방지
+        }
+        setInterval(updateImage, 1000); // 1초마다 이미지 갱신
+    </script>
 </head>
 <body>
-    <h1>업로드된 이미지</h1>
-    <img id="uploadedImage" src="{{ image_url }}" alt="업로드된 이미지">
+    <h1>실시간 이미지 업로드</h1>
+    <img id="uploadedImage" src="/receive_image" alt="업로드된 이미지" width="300">
 </body>
 </html>

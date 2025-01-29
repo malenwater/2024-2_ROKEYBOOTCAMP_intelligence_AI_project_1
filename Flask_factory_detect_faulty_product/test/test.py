@@ -8,7 +8,7 @@ image_data = None
 
 @app.route('/')
 def index():
-    return render_template('index.html', image_url="/receive_image")
+    return render_template('index.html')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
