@@ -1,3 +1,5 @@
 *.jpg
 *.json
 *.txt
+.vscode
+__pycache__
