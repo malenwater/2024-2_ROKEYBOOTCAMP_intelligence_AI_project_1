@@ -1,50 +1,58 @@
-from flask import Blueprint, render_template, request, jsonify
-from flask_socketio import SocketIO, emit
-import os
+from flask import Blueprint, render_template, request, current_app
+import asyncio
+from src.services.api_client import call_two_models
+from src.services.image_processing import draw_chip_Labeling1, draw_chip_Labeling2, check_chip_nomal
+import base64 
+from src.services.socket_events import setup_socket_events
 
-# 블루프린트 생성
 main_bp = Blueprint('main', __name__)
 
-UPLOAD_FOLDER = './src/static/uploaded_images'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
+image_data_list = []  # 업로드된 이미지 저장 리스트
+
 
 @main_bp.route('/')
-def home():
-    # 단순히 HTML 페이지를 렌더링, 세션 사용 안함
+def index():
     return render_template('index.html')
 
-@main_bp.route('/img_save', methods=["POST"])
-def img_save():
+@main_bp.route('/upload', methods=['POST'])
+async def upload_file():
     if 'file' not in request.files:
-        return jsonify({"error": "No file part"}), 400
+        return "파일이 없습니다.", 400
 
     file = request.files['file']
-    if file:
-        # 파일 이름을 0000부터 9999까지 순차적으로 설정
-        img_filename = f"{len(os.listdir(UPLOAD_FOLDER)) + 1 :04d}.jpg"
-        img_path = os.path.join(UPLOAD_FOLDER, img_filename)
-        
-        try:
-            file.save(img_path)
-            
-            # 실시간으로 클라이언트에 이미지 경로 전달
-            print(img_path)
-            print(img_path)
-            print(img_path)
-            emit('new_image', {'img_path': img_path}, broadcast=True)
+    original_image_data = file.read()
 
-            return jsonify({"message": "Image uploaded successfully"}), 200
-        except Exception as e:
-            return jsonify({"error": "Failed to save image"}), 500
+    result1, result2 = await call_two_models(current_app.config["URL"], current_app.config["ACCESS_KEY"], original_image_data)
+    score = 0.4
     
-    return jsonify({"error": "No image uploaded"}), 400
+    labeling1_image_data = draw_chip_Labeling1(original_image_data, result1,score)
+    labeling2_image_data = draw_chip_Labeling2(original_image_data, result2,score)
+    # labeling2_image_data = draw_chip_Labeling2(original_image_data, result1)
+    check_nomal = check_chip_nomal(result1,result2,score)
+    
+    image_data_list.insert(0, {
+        'original': original_image_data,
+        'grayscale': labeling1_image_data[0],
+        'sepia': labeling2_image_data[0],
+    })
 
-# WebSocket 이벤트 리스너
-@main_bp.before_app_request
-def handle_connect():
-    print("A client connected!")
+    if len(image_data_list) > 3:
+        image_data_list.pop()
 
-@main_bp.teardown_app_request
-def handle_disconnect(exception=None):
-    print("A client disconnected!")
+    encoded_images = [
+        {
+            'original': base64.b64encode(img['original']).decode("utf-8"),
+            'grayscale': base64.b64encode(img['grayscale']).decode("utf-8"),
+            'sepia': base64.b64encode(img['sepia']).decode("utf-8"),
+            "description_original": "<원본 이미지>\n" + check_nomal[0] + '\n' + check_nomal[1],
+            "description_grayscale": "<칩 구성용품 디텍팅 이미지>\n" + labeling1_image_data[1],
+            "description_sepia":  "<칩 불량 판정 이미지>\n" + labeling2_image_data[1]
+        }
+        for img in image_data_list
+    ]
+    
+    socketio = current_app.extensions.get('socketio')  # 또는 Flask app 내에서 socketio 인스턴스를 가져올 방법
+    emit_images = setup_socket_events(socketio)  # 이 부분이 중요!
+    emit_images(encoded_images)
+    
+    return {"Meseesages": "upload suesses"}

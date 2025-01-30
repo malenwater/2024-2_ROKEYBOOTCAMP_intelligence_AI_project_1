@@ -1,37 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Display</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.min.js"></script> <!-- SocketIO 클라이언트 라이브러리 추가 -->
-</head>
-<body>
-    <h1>Uploaded Image</h1>
-    
+    <title>칩 결함 디텍팅 시스템</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
-        // SocketIO 클라이언트 초기화
-        const socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+        var socket = io();
 
-        // 서버에서 new_image 이벤트를 수신했을 때 이미지 갱신
-        socket.on('new_image', function(data) {
-            console.log('New image path:', data.img_path);
-            var imgElement = document.getElementById('uploaded-image');
-            imgElement.src = data.img_path;  // 이미지 경로 업데이트
+        socket.on('update_images', function(image_data_list) {
+            const imagesContainer = document.getElementById("imagesContainer");
+            imagesContainer.innerHTML = "";  // 기존 이미지 제거
+    
+            for (let i = 0; i < image_data_list.length; i++) {
+                let row = document.createElement('div');
+                row.classList.add('image-row');
+    
+                // 이미지 및 설명 추가 함수
+                function createImageBox(imageSrc, altText, description, className) {
+                    const imgBox = document.createElement('div');
+                    imgBox.classList.add('image-box', className);
+    
+                    const img = document.createElement('img');
+                    img.src = "data:image/jpeg;base64," + imageSrc;
+                    img.alt = altText;
+    
+                    const text = document.createElement('p');
+                    text.innerHTML = description.replace(/\n/g, "<br>");  // \n을 <br>로 변경
+    
+                    imgBox.appendChild(img);
+                    imgBox.appendChild(text);
+                    row.appendChild(imgBox);
+                }
+    
+                // 원본 이미지
+                createImageBox(image_data_list[i].original, "원본 이미지", image_data_list[i].description_original, "original");
+                // 회색조 이미지
+                createImageBox(image_data_list[i].grayscale, "회색조 이미지", image_data_list[i].description_grayscale, "grayscale");
+                // 세피아 이미지
+                createImageBox(image_data_list[i].sepia, "세피아 이미지", image_data_list[i].description_sepia, "sepia");
+    
+                imagesContainer.appendChild(row);
+            }
         });
 
-        // 페이지 로드 시 img_path 값 출력 (세션 사용하지 않음)
-        window.onload = function() {
-            // 이미지는 서버에서 전달된 이미지 경로로 표시됨
-            console.log("Waiting for image upload...");
-        };
+        // 페이지 로드 시 서버에 최신 이미지 요청
+        function requestImage() {
+            socket.emit("upload_image");
+        }
+
+        window.onload = requestImage;
     </script>
 
-    <!-- 초기 이미지를 표시하기 위한 img 태그, 처음에는 기본 이미지를 사용 -->
-    <img id="uploaded-image" src="" alt="Uploaded Image" />
+    <style>
+        /* 페이지 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
 
-    <!-- 새로고침 시 최신 이미지로 갱신 -->
-    <button onclick="window.location.reload();">Refresh</button>
+        /* 이미지 컨테이너 스타일 */
+        #imagesContainer {
+            margin-top: 20px;
+        }
 
+        /* 각 행의 스타일 (이미지가 3개씩 들어갈 행) */
+        .image-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* 각 이미지 상자의 스타일 */
+        /* 각 이미지 상자의 스타일 */
+        .image-box {
+            width: 30%;
+            margin: 10px;
+            border: 2px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            word-wrap: break-word; /* 긴 단어가 있을 때 자동으로 줄 바꿈 */
+            overflow: hidden;      /* 텍스트가 상자 밖으로 나가지 않도록 숨기기 */
+            height: auto;          /* 높이를 자동으로 조정 */
+        }
+        
+        /* 텍스트 스타일 수정 */
+        .image-box p {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #888;
+            word-wrap: break-word; /* 긴 단어가 있을 때 줄 바꿈 */
+            white-space: normal;   /* 여러 줄로 텍스트를 표시할 수 있도록 설정 */
+        }
+        
+
+        .image-box img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* 원본 이미지와 가공된 이미지 구분 */
+        .original {
+            border: 2px solid blue;
+        }
+
+        .grayscale {
+            border: 2px solid gray;
+        }
+
+        .sepia {
+            border: 2px solid brown;
+        }
+    </style>
+</head>
+<body>
+    <h1>칩 결함 디텍팅 시스템</h1>
+    
+    <!-- 이미지 컨테이너 -->
+    <div id="imagesContainer">
+        <!-- 새로운 이미지가 추가됩니다. -->
+    </div>
 </body>
 </html>

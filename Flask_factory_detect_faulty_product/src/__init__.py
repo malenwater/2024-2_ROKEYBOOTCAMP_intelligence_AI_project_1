@@ -1,16 +1,24 @@
 from flask import Flask
 from flask_socketio import SocketIO
-from .routes import main_bp  # routes.py에서 블루프린트 import
+from dotenv import load_dotenv
+import os
+from src.routes import main_bp
+from src.services.socket_events import setup_socket_events
 
-# Flask 애플리케이션 초기화
 def create_app():
+    load_dotenv()
+    
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'JhG2K5utVR'
+    
+    # 환경 변수 설정
+    app.config["ACCESS_KEY"] = os.getenv("ACCESS_KEY")
+    app.config["URL"] = [os.getenv("URL_1"), os.getenv("URL_2")]
+    
 
-    # SocketIO 초기화
-    socketio = SocketIO(app)
-
-    # 블루프린트 등록
+    socketio = SocketIO()
     app.register_blueprint(main_bp)
+    # setup_socket_events(socketio)
+    socketio.init_app(app)
+
 
     return app, socketio
