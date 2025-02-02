@@ -67,6 +67,13 @@
 | Misc                 | 샘플이 컨베이어 벨트 밖, 혹은 카메라 범위를 벗어날 경우, 고장 부위를 판별할 수 없기 때문에 샘플은 반드시 카메라 범위 안에 들어와 있어야 한다. 또한, 카메라 범위 안에는 한 개의 샘플만이 있어야 한다. 두 개의 샘플이 카메라 범위 안에 있을 경우, 둘 중 하나만 하자가 있어도 정상인 다른 샘플까지 모두 불량품으로 분류되기 때문.구성용품을 바운딩 박스할 경우 엣지 기준으로 1픽셀 정도만 준다. 순서를 USB, BOOTSEL, CHIPSET, OSCILLATOR, HOLE, RASPBERRY PICO|
 |Contact Info|이선우,김영수,한건희,최범석|
 
+## FLASK UI
+  .env를 사용하여 올리기 민감한 정보를 관리하고 있다. 
+
+  ACCESS_KEY=ywmBNfb6TQ7gBJNzAVVolazNLa2pDcXT9qgluUch(superbAI 팀 키키)
+  URL_1=https://suite-endpoint-api-apne2.superb-ai.com/endpoints/1c49f6a4-15e9-4631-a48e-9df69decddd4/inference(첫번째 AI모델 URL)
+  URL_2=https://suite-endpoint-api-apne2.superb-ai.com/endpoints/27b67988-30b5-4205-be8e-4224b27dd992/inference(두두번째 AI모델 URL)
+
 ## 플랜
 가로와 세로는 잘한다. 대각선을 어려워한다.
 월 : 라벨링1번, ppt, 다양한 환경 테스트 데이터 셋 환경 구축, 오토 라벨 성능 좋게 개선 
