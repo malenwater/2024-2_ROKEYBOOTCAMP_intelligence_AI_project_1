@@ -1,5 +1,8 @@
+# 2024-2_ROKEYBOOTCAMP_intelligence_AI_project_1
+  - 2025/01/22~2025/01/31, 설날을 포함, 약 10일 동안 진행한 프로젝트이다.
+  - 컨테이너 기반 칩(기판) 불량 시스템 구축이 프로젝트의 주제이다.
 
-## 첫번째 프로젝트
+## 첫번째 프로젝트(예시를 학습)
   - 칩의 구성용품 라벨링 프로젝트
 
 | 주제                 | 내용                                                         |
@@ -50,13 +53,13 @@
 3. 모델은 어떤 것이 효율적인가?
 
   - 
-## 불량 검출 데이터 구축 시트
+## 불량 검출 데이터 구축 시트(1번 구성용품 판별 모델델)
 
 | 주제                 | 내용                                                         |
 |-----------------------|-------------------------------------------------------------|
 | Data Type            | Image(jpg)                                                  |
 | Data Amount          | 1200장(양품 600장, 불량품 600장), 배치 1 : 240장, 배치 2 : 960장                        |
-| Expected Labeling Unit per Data | 0 ~ 4개                                               |
+| Expected Labeling Unit per Data | 0 ~ 9개                                               |
 | Brief Description    | Image Category(분류) / Bounding Box(바운딩 박스)을 통한 양품, 불량품 판별 |
 | 종료 희망 날짜        | - 배치 1 : ~2025-1-24까지, - 배치 2 : ~ 2025-1-25까지       |
 | Customer Guideline   | 더미 |
@@ -74,11 +77,8 @@
   URL_1=https://suite-endpoint-api-apne2.superb-ai.com/endpoints/1c49f6a4-15e9-4631-a48e-9df69decddd4/inference(첫번째 AI모델 URL)
   URL_2=https://suite-endpoint-api-apne2.superb-ai.com/endpoints/27b67988-30b5-4205-be8e-4224b27dd992/inference(두두번째 AI모델 URL)
 
-## 플랜
-가로와 세로는 잘한다. 대각선을 어려워한다.
-월 : 라벨링1번, ppt, 다양한 환경 테스트 데이터 셋 환경 구축, 오토 라벨 성능 좋게 개선 
-모든 상황에서 불량을 체크할 수 있도록 하고, 플라스크로 연결되서 작동되게 하면 끝
-화 : 
-수 : 
-목 : 
-금 : 
+## 프로젝트 후기
+
+|이름|소감|
+|----|----|
+|더미|더미|
