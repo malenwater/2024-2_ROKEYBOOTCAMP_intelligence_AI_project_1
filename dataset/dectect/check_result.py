@@ -7,7 +7,11 @@ result_path = './results/01/result'
 # 파일 리스트를 비교할 변수들
 same_files = []  # 같은 파일들
 different_files = []  # 다른 파일들
-
+"""_summary_
+    해당 파일은 make_result.py 파일을 통해 만들어진 txt 파일을 기존 답 txt와 비교하여 틀린 txt를 출력하는 파일입니다.
+    true_result_path : 정답 데이터 위치
+    result_path : 비교할 데이터 위치
+"""
 # 폴더 내 모든 파일 목록 가져오기
 true_result_files = os.listdir(true_result_path)
 result_files = os.listdir(result_path)

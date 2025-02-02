@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 이 파일은 한 폴더내에 있는 conveyor_system_collect_img을 통해 뽑은 이미지를 30장씩 폴더로 묶어주는 파일이다.
+
 # Set the directory containing the .jpg files
 directory="./fail"
 

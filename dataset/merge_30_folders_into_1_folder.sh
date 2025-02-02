@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 이 파일은 한 폴더내에 이미지를 30장씩 폴더들을 하나의 폴더로 묶어주는 파일이다.
+
 # Set the target directory where all images will be moved
 target_directory="./"
 

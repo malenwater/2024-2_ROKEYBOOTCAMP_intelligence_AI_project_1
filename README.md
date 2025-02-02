@@ -46,3 +46,10 @@
 | Property             | 없음                                                        |
 | Misc                 | 샘플이 컨테이너에 바깥에 걸쳐져 있어도, 데이터로 사용한다. 칩이 사진에 짤리거나 컨테이너 바깥쪽에 걸쳤을 때, 불량품이 짤릴 경우, 불량품의 50프로 이상이면 바운딩 박스를 한다. 주변의 채광을 가림막을 이용하여 밝기를 일정하게 조절한다. 바운딩 박스의 경우, 예시 사진을 몇 개 넣어 불량품의 3~7 픽셀의 패딩을 넣어서 바운딩 박스를 설정한다.|
 |Contact Info|이선우,김영수,한건희,최범석|
+
+## FLASK UI
+  .env를 사용하여 올리기 민감한 정보를 관리하고 있다. 
+
+  ACCESS_KEY=ywmBNfb6TQ7gBJNzAVVolazNLa2pDcXT9qgluUch(superbAI 팀 키키)
+  URL_1=https://suite-endpoint-api-apne2.superb-ai.com/endpoints/1c49f6a4-15e9-4631-a48e-9df69decddd4/inference(첫번째 AI모델 URL)
+  URL_2=https://suite-endpoint-api-apne2.superb-ai.com/endpoints/27b67988-30b5-4205-be8e-4224b27dd992/inference(두두번째 AI모델 URL)

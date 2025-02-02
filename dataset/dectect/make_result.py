@@ -3,13 +3,13 @@ from requests.auth import HTTPBasicAuth
 import cv2
 import os
 import json
-
-# URL = "https://suite-endpoint-api-apne2.superb-ai.com/endpoints/fb6570c0-01c9-478d-b744-60ffaf77237d/inference"
-# URL = "https://suite-endpoint-api-apne2.superb-ai.com/endpoints/19d6b45a-cdb0-472b-8983-69593b8b5596/inference"
-# URL = "https://suite-endpoint-api-apne2.superb-ai.com/endpoints/37a0e6a3-acf0-4755-bbeb-0dfb0e0e1f08/inference"
-URL = "https://suite-endpoint-api-apne2.superb-ai.com/endpoints/d6d6a71d-34fa-49aa-9e4f-ec43277d8f3d/inference"
-ACCESS_KEY = "ywmBNfb6TQ7gBJNzAVVolazNLa2pDcXT9qgluUch"
-    
+"""_summary_
+    해당 파일은 아래 jpg_files의 jpg를 superbai의 url에 넣어서 결과를 나오도록 하는 파일이다.
+    result_path : 비교할 txt를 저장할 위치
+    all_result_path : 기타 정보인 img, json 파일을 저장할 위치
+"""
+URL = "subperbAI의 모델 URL"
+ACCESS_KEY = "subperbAI 팀 키"
 result_path = "./results/small_model/result"
 all_result_path = "./results/small_model/all_result"
 
@@ -48,24 +48,6 @@ def show_img(img_path,response):
     cv2.imshow('Window Name_1', img)
     cv2.waitKey(1000)
     cv2.destroyAllWindows()
-
-
-# # 현재 실행한 위치에서 폴더 경로
-# data_folder = './'  # 원하는 폴더 경로로 수정
-
-# # 이미지 파일 확장자
-# valid_extension = '.jpg'
-
-# 파일 찾기 코드
-# # 폴더와 하위 폴더를 순회하면서 .jpg 파일 찾기
-# for root, dirs, files in os.walk(data_folder):
-#     for filename in files:
-#         if filename.lower().endswith(valid_extension):
-#             file_path = os.path.join(root, filename)
-#             jpg_files.append(file_path)
-
-# # .jpg 파일 목록 출력
-# print(jpg_files)
 
 # 모든 .jpg 파일 경로를 리스트로 저장
 jpg_files = ['./test_val_1/test_val_1_0001.jpg', './test_val_1/test_val_1_0002.jpg', 
@@ -234,8 +216,7 @@ def save_image(img_path,response):
         # 박스 그리기
         cv2.rectangle(img, start_point, end_point, color, thickness)
         
-        
-        # 텍스트 설정
+        # 텍스트 설정 = 원하면 text를 적어놓아서 저장 가능
         # text = one_data['class']# + " : "+ str(one_data['score'])    # 추가할 텍스트
         # position = (one_data['box'][0] - 20, one_data['box'][1] - 10) # 텍스트 시작 위치 (x, y)
         # font = cv2.FONT_HERSHEY_SIMPLEX # 글꼴 설정

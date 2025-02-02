@@ -9,60 +9,17 @@ import os
 import cv2
 
 ser = serial.Serial("/dev/ttyACM0", 9600)
-
+"""_summary_
+    해당 파이썬 파일은 단일 파일로, 본 프로젝트에서 라즈베리파이에 연결된 카메라와 센서를 통해서 센서 앞을 칩(기판)이 지나갈 경우, 촬영하여 저장되도록한다.
+    paths : 저장할 폴더 이름
+    img_name : 저장할 이미지 앞 이름
+    img_max : 저장할 이미지 개수
+"""
 # API endpoint
 api_url = ""
 
-# set path and image number
-# paths = "./test_val_1"
-# img_name = "test_val_1"
-
-# paths = "./test_val_2_1"
-# img_name = "test_val_2_1"
-# paths = "./test_val_2_2"
-# img_name = "test_val_2_2"
-# paths = "./test_val_2_3"
-# img_name = "test_val_2_3"
-# paths = "./test_val_2_4"
-# img_name = "test_val_2_4"
-# paths = "./test_val_2_6"
-# img_name = "test_val_2_6"
-
-# paths = "./test_val_3_1"
-# img_name = "test_val_3_1"
-# paths = "./test_val_3_3"
-# img_name = "test_val_3_3"
-# paths = "./test_val_3_4"
-# img_name = "test_val_3_4"
-
-# paths = "./test_val_3_2"
-# img_name = "test_val_3_2"
-# paths = "./test_val_3_5"
-# img_name = "test_val_3_5"
-
-# paths = "./test_val_4_1"
-# img_name = "test_val_4_1"
-# paths = "./test_val_4_2"
-# img_name = "test_val_4_2"
-
-# paths = "./test_val_5_1"
-# img_name = "test_val_5_1"
-# paths = "./test_val_5_2"
-# img_name = "test_val_5_2"
-
-# paths = "./test_val_6_1"
-# img_name = "test_val_6_1"
-# paths = "./test_val_6_2"
-# img_name = "test_val_6_2"
-
-# paths = "./test_val_7_1"
-# img_name = "test_val_7_1"
-# paths = "./test_val_7_2"
-# img_name = "test_val_7_2"
-
 paths = "./test_val_8"
 img_name = "test_val_8"
-
 img_max = 8
 
 
@@ -177,14 +134,7 @@ def save_img():
             if key == ord('q'):  # If 'q' is pressed, close the window
                 cv2.destroyAllWindows()
             current_count += 1
-            # crop_info = None
-            # crop_info = {"x": 200, "y": 100, "width": 300, "height": 300}
 
-            # if crop_info is not None:
-            #     img = crop_img(img, crop_info)
-
-
-            # result = inference_reqeust(img, api_url)
             if current_count >= img_max:
                 print("The folder already contains the maximum number of images. Stopping.")
                 break

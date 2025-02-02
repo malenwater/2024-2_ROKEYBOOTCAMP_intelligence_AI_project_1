@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 이 파일은 한 폴더내에 이미지들의 이름이 순서대로 되어있지 않으면 쭉 이름이 이어지도록 해주는 파일이다.
+
 # Directory where the files are located
 directory="./fail"  # Replace with the path to your directory
 
